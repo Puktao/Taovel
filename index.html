@@ -63,11 +63,11 @@ header{position:absolute;z-index:10;top:0;left:0;width:100%;height:94px}.nav{hei
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
       <fieldset class="form-section"><legend>Property Details</legend><div class="contact-grid">
         <div class="contact-field"><label for="dPropName">Property Name *</label><input id="dPropName" name="Property Name" type="text" autocomplete="organization" required></div>
-        <div class="contact-field"><label for="dWebsite">Website</label><input id="dWebsite" name="Website" type="text" inputmode="url" placeholder="www.yourhotel.com" autocomplete="url"></div>
+        <div class="contact-field"><label for="dWebsite">Website *</label><input id="dWebsite" name="Website" type="text" inputmode="url" placeholder="www.yourhotel.com" autocomplete="url" required></div>
         <div class="contact-field"><label for="dBusinessType">Business Type *</label><select id="dBusinessType" name="Business Type" required><option value="" disabled selected>Select…</option><option>Hotel</option><option>Bed &amp; Breakfast</option><option>Hostel</option><option>Apartment</option><option>Groups</option><option>Vacation Homes</option><option>Alternative Accommodations</option></select></div>
         <div class="contact-field"><label for="dPropertyType">Property Type *</label><select id="dPropertyType" name="Property Type" required><option value="" disabled selected>Select…</option><option>Part of a Group</option><option>Independent Property</option></select></div>
         <div class="contact-field"><label for="dRooms">Number Of Rooms *</label><input id="dRooms" name="Number Of Rooms" type="number" min="1" step="1" inputmode="numeric" required></div>
-        <div class="contact-field full"><label for="dDescription">Brief Description of the Property</label><textarea id="dDescription" name="Brief Description of the Property" placeholder="Location, style, guest profile, current systems…"></textarea></div>
+        <div class="contact-field full"><label for="dDescription">Brief Description of the Property *</label><textarea required id="dDescription" name="Brief Description of the Property" placeholder="Location, style, guest profile, current systems…"></textarea></div>
       </div></fieldset>
       <fieldset class="form-section"><legend>Property Address</legend><div class="contact-grid">
         <div class="contact-field"><label for="dCountry">Country *</label><input id="dCountry" name="Country" type="text" autocomplete="country-name" required></div>
@@ -79,8 +79,8 @@ header{position:absolute;z-index:10;top:0;left:0;width:100%;height:94px}.nav{hei
         <div class="contact-field"><label for="dFirst">First Name *</label><input id="dFirst" name="First Name" type="text" autocomplete="given-name" required></div>
         <div class="contact-field"><label for="dLast">Last Name *</label><input id="dLast" name="Last Name" type="text" autocomplete="family-name" required></div>
         <div class="contact-field"><label for="dEmail">Email *</label><input id="dEmail" name="Email" type="email" autocomplete="email" required></div>
-        <div class="contact-field"><label for="dPhone">Phone</label><input id="dPhone" name="Phone" type="tel" autocomplete="tel"></div>
-        <div class="contact-field full"><label for="dPrompt">What Prompted the interest in Cloudbeds Services?</label><textarea id="dPrompt" name="What Prompted the interest in Cloudbeds Services?"></textarea></div>
+        <div class="contact-field"><label for="dPhone">Phone *</label><input id="dPhone" name="Phone" type="tel" autocomplete="tel" required></div>
+        <div class="contact-field full"><label for="dPrompt">What Prompted the interest in Cloudbeds Services? *</label><textarea required id="dPrompt" name="What Prompted the interest in Cloudbeds Services?"></textarea></div>
       </div></fieldset>
       <button class="btn contact-submit" type="submit">Request demo&nbsp; →</button>
       <p class="contact-status" role="status" aria-live="polite"></p>
