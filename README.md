@@ -36,10 +36,13 @@ which forwards them by email. No account or API key is needed.
 - If the request fails, the visitor is offered a pre-filled `mailto:` link as a fallback.
 - A hidden honeypot field (`_honey`) filters basic spam bots.
 
-## Cloudbeds demo form — country & city data
+## Cloudbeds demo form — location data
 
-- Country dropdown: ISO 3166 country list (from `i18n-iso-countries`, MIT), embedded in `index.html`.
-- City suggestions: `assets/cities/<ISO2>.json`, one file per country, loaded only when a
-  country is selected. Source: [GeoNames](https://www.geonames.org/) via the `cities.json`
-  package — licensed **CC BY 4.0** (attribution shown in the form). Visitors can still type
-  a city that is not in the list.
+- **Country** dropdown: ISO 3166 list (from `i18n-iso-countries`, MIT), embedded in `index.html`.
+- **State/Province** and **City** dropdowns: `assets/geo/<ISO2>.json`, one file per country,
+  loaded only when that country is selected. Format: `{"s": [[code, name], ...], "c": [[city, stateCode], ...]}`.
+  - State/Province is disabled ("Not applicable") for countries without subdivisions.
+  - City is filtered by the selected state/province (or shows all cities of the country).
+  - "Other (not listed)" reveals a free-text city field.
+- Source: [GeoNames](https://www.geonames.org/) via the `cities.json` package — **CC BY 4.0**
+  (attribution shown in the form).
