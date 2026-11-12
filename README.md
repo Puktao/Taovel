@@ -6,6 +6,7 @@ Static, single-page website for TAOVEL Hospitality Advisory (Europe).
 
 ```
 index.html        # complete site (HTML + inline CSS/JS, no build step)
+privacy.html      # GDPR privacy policy (linked from footer and forms)
 assets/           # images (.webp) and Cloudbeds logo (.svg)
 .github/workflows/pages.yml  # automatic GitHub Pages deployment
 ```
