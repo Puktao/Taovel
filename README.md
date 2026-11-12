@@ -39,10 +39,9 @@ which forwards them by email. No account or API key is needed.
 ## Cloudbeds demo form — location data
 
 - **Country** dropdown: ISO 3166 list (from `i18n-iso-countries`, MIT), embedded in `index.html`.
-- **State/Province** and **City** dropdowns: `assets/geo/<ISO2>.json`, one file per country,
-  loaded only when that country is selected. Format: `{"s": [[code, name], ...], "c": [[city, stateCode], ...]}`.
-  - State/Province is disabled ("Not applicable") for countries without subdivisions.
-  - City is filtered by the selected state/province (or shows all cities of the country).
-  - "Other (not listed)" reveals a free-text city field.
+- **City** dropdown: filtered by the selected country, loaded from `assets/geo/<ISO2>.json`
+  (one sorted array of city names per country, fetched only when that country is selected).
+  "Other (not listed)" reveals a free-text city field.
+- **State/Province**: optional free-text field.
 - Source: [GeoNames](https://www.geonames.org/) via the `cities.json` package — **CC BY 4.0**
   (attribution shown in the form).
