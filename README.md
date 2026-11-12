@@ -47,5 +47,4 @@ which forwards them by email. No account or API key is needed.
     from `country-region-data` (MIT).
   - Greece: the 74 regional units + Mount Athos (ISO only lists the 13 large regions).
   - Countries/territories with no subdivisions list the country itself.
-  - "Other (not listed)" reveals a free-text field.
 - **State/Province**: optional free-text field.
