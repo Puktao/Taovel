@@ -39,11 +39,13 @@ which forwards them by email. No account or API key is needed.
 ## Cloudbeds demo form — location data
 
 - **Country** dropdown: ISO 3166 list (from `i18n-iso-countries`, MIT), embedded in `index.html`.
-- **City** dropdown: filtered by the selected country, loaded from `assets/geo/<ISO2>.json`
-  (one sorted array of city names per country, fetched only when that country is selected).
-  Only real cities/towns are listed — capitals, regional/district seats and towns above a
-  population threshold; neighbourhoods, suburbs within a larger city's radius and villages
-  are excluded. "Other (not listed)" reveals a free-text city field.
+- **City** dropdown: the country's provinces ("il" level), filtered by the selected country and
+  loaded from `assets/geo/<ISO2>.json` (one sorted array per country).
+  - Default: the lowest official level of **ISO 3166-2** subdivisions (from the `iso-3166`
+    package, MIT) — e.g. Turkey's 81 provinces, Italy's 107 provinces, Spain's 52, France's departments.
+  - Countries whose ISO names are transliterations (JP, CN, RU, AE, EG …) use English names
+    from `country-region-data` (MIT).
+  - Greece: the 74 regional units + Mount Athos (ISO only lists the 13 large regions).
+  - Countries/territories with no subdivisions list the country itself.
+  - "Other (not listed)" reveals a free-text field.
 - **State/Province**: optional free-text field.
-- Source: [GeoNames](https://www.geonames.org/) via the `all-the-cities` package (MIT) — **CC BY 4.0**
-  (attribution shown in the form).
