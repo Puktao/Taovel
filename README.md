@@ -1,6 +1,6 @@
 # TAOVEL — Hospitality Advisory
 
-Static, single-page website for TAOVEL Hospitality Advisory (Greece · Europe).
+Static, single-page website for TAOVEL Hospitality Advisory (Europe).
 
 ## Structure
 
