@@ -11,6 +11,13 @@ assets/           # images (.webp) and Cloudbeds logo (.svg)
 .github/workflows/pages.yml  # automatic GitHub Pages deployment
 ```
 
+## Link preview & icons
+
+- `assets/og-image.jpg` (1200×630) is the image shown when the site is shared (WhatsApp, LinkedIn, email…).
+  The `og:image`, `og:url` and `canonical` tags in `index.html` / `privacy.html` use absolute URLs —
+  **update them when the site moves to its own domain.**
+- `favicon.ico`, `assets/favicon-32.png`, `assets/apple-touch-icon.png`, `assets/icon-512.png`: browser tab and home-screen icons.
+
 ## Local preview
 
 Open `index.html` in a browser, or run a local server:
