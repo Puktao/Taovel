@@ -41,7 +41,9 @@ which forwards them by email. No account or API key is needed.
 - **Country** dropdown: ISO 3166 list (from `i18n-iso-countries`, MIT), embedded in `index.html`.
 - **City** dropdown: filtered by the selected country, loaded from `assets/geo/<ISO2>.json`
   (one sorted array of city names per country, fetched only when that country is selected).
-  "Other (not listed)" reveals a free-text city field.
+  Only real cities/towns are listed — capitals, regional/district seats and towns above a
+  population threshold; neighbourhoods, suburbs within a larger city's radius and villages
+  are excluded. "Other (not listed)" reveals a free-text city field.
 - **State/Province**: optional free-text field.
-- Source: [GeoNames](https://www.geonames.org/) via the `cities.json` package — **CC BY 4.0**
+- Source: [GeoNames](https://www.geonames.org/) via the `all-the-cities` package (MIT) — **CC BY 4.0**
   (attribution shown in the form).
