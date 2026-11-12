@@ -6,7 +6,7 @@ Static, single-page website for TAOVEL Hospitality Advisory (Greece · Europe).
 
 ```
 index.html        # complete site (HTML + inline CSS/JS, no build step)
-assets/           # hero, Cloudbeds and Athens concept-study images (.webp)
+assets/           # images (.webp) and Cloudbeds logo (.svg)
 .github/workflows/pages.yml  # automatic GitHub Pages deployment
 ```
 
