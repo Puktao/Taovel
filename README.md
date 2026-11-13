@@ -29,7 +29,8 @@ python3 -m http.server 8000
 
 ## Deployment (GitHub Pages)
 
-Every push to the default branch deploys the site via GitHub Actions.
+Every push to the default branch (`Main`) deploys the site via GitHub Actions.
+The `github-pages` environment must allow deployments from `Main` (Settings → Environments → github-pages).
 One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
 ## Contact form
