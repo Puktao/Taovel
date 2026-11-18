@@ -99,14 +99,14 @@ document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('click',e=>{i
 const CONTACT_EMAIL='taoveladvisory@gmail.com';
 const FORMS={
 contact:{label:'Send enquiry',ok:'Thank you — your enquiry has been sent. We will reply to you by email.',
- build:f=>({name:f.get('name'),email:f.get('email'),hotel:f.get('hotel')||'Not provided',topic:f.get('topic')||'Not specified',message:f.get('message'),_subject:'TAOVEL enquiry — '+(f.get('topic')||'Hospitality project'),_replyto:f.get('email')})},
+ build:f=>{const n=String(f.get('name')).trim(),h=String(f.get('hotel')||'').trim();return {'Name':n,'Email':f.get('email'),'Hotel / Company':h||'—','Topic':f.get('topic')||'—','Message':f.get('message'),_subject:'New enquiry from '+n+(h?' · '+h:''),_replyto:f.get('email')};}},
 demo:{label:'Request demo',ok:'Thank you — your Cloudbeds demo request has been sent. TAOVEL will contact you by email to arrange the introduction.',
- build:f=>{const p={};for(const [k,v] of f.entries()){if(k!=='_honey')p[k]=String(v).trim()||'Not provided';}const o={};[...document.querySelectorAll('#demoForm [name]')].map(e=>e.name).forEach(k=>{if(k in p&&!(k in o))o[k]=p[k];});Object.keys(p).forEach(k=>{if(!(k in o))o[k]=p[k];});o._subject='Cloudbeds demo request — '+f.get('Property Name');o._replyto=f.get('Email');return o;}}};
+ build:f=>{const p={};for(const [k,v] of f.entries()){if(k!=='_honey')p[k]=String(v).trim()||'—';}const o={};[...document.querySelectorAll('#demoForm [name]')].map(e=>e.name).forEach(k=>{if(k in p&&!(k in o))o[k]=p[k];});Object.keys(p).forEach(k=>{if(!(k in o))o[k]=p[k];});o._subject='New Cloudbeds demo request · '+f.get('Property Name')+' ('+f.get('City')+', '+f.get('Country')+')';o._replyto=f.get('Email');return o;}}};
 function mailtoLink(p){const body=Object.entries(p).filter(([k])=>!k.startsWith('_')).map(([k,v])=>k+': '+v).join('\n');return 'mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent(p._subject)+'&body='+encodeURIComponent(body);}
 document.querySelectorAll('form[data-kind]').forEach(form=>{const cfg=FORMS[form.dataset.kind],btn=form.querySelector('.contact-submit'),status=form.querySelector('.contact-status');
 const setStatus=(html,cls)=>{status.className='contact-status '+cls;status.innerHTML=html;};
 form.addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(form);if(f.get('_honey'))return;
-btn.disabled=true;btn.textContent='Sending…';setStatus('','');const payload=Object.assign(cfg.build(f),{_template:'table',_captcha:'false'});
+btn.disabled=true;btn.textContent='Sending…';setStatus('','');const payload=Object.assign(cfg.build(f),{_template:'box',_captcha:'false'});
 try{const r=await fetch('https://formsubmit.co/ajax/'+CONTACT_EMAIL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});const d=await r.json().catch(()=>({}));
 if(!r.ok||String(d.success)!=='true')throw new Error(d.message||'Request failed');form.reset();setStatus(cfg.ok,'ok');}
 catch(err){setStatus('Sorry, the message could not be sent. Please <a href="'+mailtoLink(payload)+'">send it by email</a> instead.','err');}
