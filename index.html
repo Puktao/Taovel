@@ -93,6 +93,19 @@ body{text-rendering:optimizeLegibility}
 @media(max-width:900px){.tech,.concept{width:calc(100% - 28px);margin:40px auto;border-radius:18px}.concept{margin-top:0}}
 @media(max-width:600px){.hero:before{animation:none;inset:0}.concept-gallery img{border-radius:8px}.hero{height:auto!important;min-height:640px!important}.hero:before{background-position:62% center}.hero:after{background:linear-gradient(90deg,rgba(246,240,232,.96) 0%,rgba(246,240,232,.84) 58%,rgba(246,240,232,.25) 100%)}.services{padding-top:56px!important;padding-bottom:56px!important}.service-grid{gap:14px!important}.marquee-track{font-size:11px;gap:30px;padding:13px 0}.marquee-track span{gap:30px}.closing{padding:52px 0!important}}
 @media(prefers-reduced-motion:reduce){.hero:before,.marquee-track,.closing,.scroll-cue i:after{animation:none!important}.hero-copy>*{opacity:1;transform:none;animation:none}.rv{opacity:1;transform:none;transition:none}}
+.contact-dialog{border-radius:20px;overscroll-behavior:contain}.dialog-close{border-radius:50%;transition:background .25s,transform .35s cubic-bezier(.2,.7,.2,1)}.dialog-close:hover{background:rgba(93,91,54,.1);transform:rotate(90deg)}
+.contact-dialog[open]{animation:dlgIn .55s cubic-bezier(.2,.7,.2,1) both}
+.contact-dialog[open]::backdrop{animation:bdIn .45s ease both}
+.contact-dialog.closing{animation:dlgOut .34s cubic-bezier(.4,0,.6,1) both}
+.contact-dialog.closing::backdrop{animation:bdOut .34s ease both}
+@keyframes dlgIn{from{opacity:0;transform:translateY(70px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes dlgOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(50px) scale(.99)}}
+@keyframes bdIn{from{opacity:0}to{opacity:1}}
+@keyframes bdOut{from{opacity:1}to{opacity:0}}
+@keyframes sheetIn{from{transform:translateY(100%)}to{transform:none}}
+@keyframes sheetOut{from{transform:none}to{transform:translateY(100%)}}
+@media(max-width:600px){.contact-dialog{width:100%;max-width:100%;margin:auto 0 0;border-radius:22px 22px 0 0;max-height:92dvh;border-bottom:0}.contact-dialog[open]{animation:sheetIn .5s cubic-bezier(.2,.7,.2,1) both}.contact-dialog.closing{animation:sheetOut .32s cubic-bezier(.4,0,.6,1) both}.contact-dialog-inner:before{content:"";display:block;width:42px;height:4px;border-radius:4px;background:rgba(65,59,45,.25);margin:-12px auto 16px}}
+@media(prefers-reduced-motion:reduce){.contact-dialog[open],.contact-dialog[open]::backdrop,.contact-dialog.closing,.contact-dialog.closing::backdrop{animation:none}}
 </style>
 </head>
 <body><div class="progress" aria-hidden="true"></div>
@@ -170,7 +183,8 @@ body{text-rendering:optimizeLegibility}
 const contactDialog=document.getElementById('contactDialog'),demoDialog=document.getElementById('demoDialog');
 document.querySelectorAll('[data-open-contact],a[href="#contact"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();contactDialog.showModal();}));
 document.querySelectorAll('[data-open-demo]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();demoDialog.showModal();}));
-document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('click',e=>{if(e.target===d)d.close();});d.querySelectorAll('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>d.close()));});
+const closeDlg=d=>{if(!d.open||d.classList.contains('closing'))return;if(matchMedia('(prefers-reduced-motion: reduce)').matches){d.close();return;}d.classList.add('closing');const done=()=>{d.classList.remove('closing');d.close();};d.addEventListener('animationend',done,{once:true});setTimeout(()=>{if(d.classList.contains('closing'))done();},500);};
+document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('cancel',e=>{e.preventDefault();closeDlg(d);});d.addEventListener('click',e=>{if(e.target===d)closeDlg(d);});d.querySelectorAll('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>closeDlg(d)));});
 const CONTACT_EMAIL='taoveladvisory@gmail.com';
 const FORMS={
 contact:{label:'Send enquiry',ok:'Thank you — your enquiry has been sent. We will reply to you by email.',
