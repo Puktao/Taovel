@@ -20,12 +20,86 @@ header{position:fixed;z-index:50;top:0;left:0;width:100%;height:94px;transition:
 @media(max-width:900px){.wrap{width:calc(100% - 52px)}.navlinks,.nav-cta{display:none}.toggle{display:block}.mobile{position:absolute;top:100%;left:0;right:0;background:var(--cream);padding:18px 26px 24px;display:none;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}.mobile.open{display:flex}.mobile a{padding:12px 0;min-height:44px}.mobile a.mobile-cta{align-self:flex-start;margin-top:10px;padding:12px 21px;border-radius:30px;color:#fff}.hero{height:620px;min-height:0;background-position:58% center}.hero .hero-title{font-size:clamp(46px,8vw,64px)}.tech{grid-template-columns:1fr 1.1fr}.tech-copy{padding:28px}.tech-photo{min-height:280px}.tech-list{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);padding:20px 28px}.tech-item{font-size:12px}.concept-content{padding:26px}.details-grid{grid-template-columns:1fr;gap:24px}}
 @media(max-width:600px){.wrap{width:calc(100% - 36px)}header{height:76px}.brand{font-size:30px}.brand small{font-size:8px}.hero{height:620px;min-height:0;align-items:flex-start;background-position:62% center;background-image:linear-gradient(90deg,rgba(246,240,232,.96) 0%,rgba(246,240,232,.82) 55%,rgba(246,240,232,.2) 100%),url('assets/taovel-mediterranean-hero.webp?v=3')}.hero-copy{padding-top:150px}.hero .hero-title{font-size:clamp(43px,11vw,58px);max-width:430px}.hero p{font-size:15px;max-width:340px}.hero-caption{bottom:24px;left:20px;font-size:10px}.services{padding:30px 0}.section-heading h2{font-size:30px}.section-heading p{font-size:13px}.service-grid{grid-template-columns:1fr;gap:0}.service{padding:22px 10px}.service+.service:before{left:10%;right:10%;top:0;bottom:auto;width:80%;height:1px}.service-icon{height:38px}.tech{grid-template-columns:1fr}.tech-copy{padding:30px 24px;border-right:0;border-bottom:1px solid var(--line)}.cloudbeds-word img{height:26px}.tech-photo{min-height:235px;grid-row:2}.tech-list{grid-row:3;grid-template-columns:1fr 1fr;gap:15px;padding:22px 24px}.tech-item{font-size:12px}.concept{grid-template-columns:1fr}.concept-gallery{min-height:300px;height:300px}.concept-content{padding:28px 24px}.concept-content h2{font-size:25px}.details{padding:48px 0}.details h2{font-size:30px}.detail-cards{grid-template-columns:1fr;gap:18px}.closing{padding:38px 0}.closing-inner{align-items:flex-start;flex-direction:column}.closing h2{font-size:27px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,auto);grid-auto-flow:column;gap:14px 24px;width:100%;font-size:13px}.footer-links a{min-height:24px;display:flex;align-items:center}.copyright{flex-direction:column;gap:8px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+/* ===== TAOVEL 2.0 — motion & modern layer ===== */
+:root{--ease:cubic-bezier(.2,.7,.2,1)}
+body{text-rendering:optimizeLegibility}
+::selection{background:var(--olive);color:#fff}
+/* progress bar */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--olive);z-index:60}
+/* hero: immersive, ken burns */
+.hero{background:none!important;isolation:isolate;height:min(100svh,920px)!important;min-height:620px!important;max-height:none!important}
+.hero:before{content:"";position:absolute;inset:-2%;z-index:-2;background:url('assets/taovel-mediterranean-hero.webp?v=3') center 53%/cover no-repeat;animation:kb 22s var(--ease) both;will-change:transform}
+.hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(246,240,232,.97) 0%,rgba(246,240,232,.84) 34%,rgba(246,240,232,.08) 72%),linear-gradient(0deg,rgba(246,240,232,.55),rgba(246,240,232,0) 28%)}
+@keyframes kb{from{transform:scale(1.12) translate3d(1.5%,0,0)}to{transform:scale(1) translate3d(0,0,0)}}
+.hero .hero-title{font-size:clamp(54px,6.4vw,104px)!important;letter-spacing:-.06em!important;line-height:.98!important}
+.hero-kicker{display:inline-flex;align-items:center;gap:12px}
+.hero-kicker:before{content:"";width:28px;height:1px;background:var(--olive)}
+.hero-copy>*{opacity:0;transform:translateY(26px);animation:up .9s var(--ease) forwards}
+.hero-copy>*:nth-child(1){animation-delay:.15s}.hero-copy>*:nth-child(2){animation-delay:.3s}.hero-copy>*:nth-child(3){animation-delay:.48s}.hero-copy>*:nth-child(4){animation-delay:.62s}
+@keyframes up{to{opacity:1;transform:none}}
+.scroll-cue{position:absolute;right:5%;bottom:40px;display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);opacity:.75}
+.scroll-cue i{position:relative;display:block;width:1px;height:46px;background:rgba(36,35,33,.2);overflow:hidden}
+.scroll-cue i:after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--ink);animation:cue 1.8s var(--ease) infinite}
+@keyframes cue{to{top:100%}}
+/* marquee */
+.marquee{background:var(--olive);color:#f4ede2;overflow:hidden;white-space:nowrap;border-block:1px solid rgba(255,255,255,.08)}
+.marquee-track{display:inline-flex;gap:46px;padding:17px 0;animation:mq 70s linear infinite;font-size:13px;letter-spacing:.22em;text-transform:uppercase}
+.marquee-track span{display:inline-flex;align-items:center;gap:46px}
+.marquee-track span:after{content:"✦";font-size:9px;opacity:.6;letter-spacing:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* section headings */
+.section-heading h2{font-size:clamp(36px,4vw,54px)!important;letter-spacing:-.045em!important}
+.services{padding-top:96px!important;padding-bottom:96px!important}
+/* service cards */
+.service-grid{gap:22px!important}
+.service{background:#fbf7f0;border:1px solid rgba(65,59,45,.12);border-radius:18px;padding:40px 30px!important;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s;position:relative}
+.service+.service:before{display:none!important}
+.service:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(36,30,18,.10);border-color:rgba(93,91,54,.35)}
+.service svg{transition:transform .6s var(--ease)}.service:hover svg{transform:scale(1.12) rotate(-4deg)}
+.service .num{position:absolute;top:18px;right:22px;font-size:11px;letter-spacing:.16em;color:var(--olive);opacity:.7}
+/* buttons */
+.btn{transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s!important;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(70,70,41,.22)}
+/* tech */
+.tech-photo{background-size:cover!important;transition:background-position .1s linear}
+.tech-item{transition:transform .4s var(--ease),color .3s}.tech-item:hover{transform:translateX(6px);color:var(--olive)}
+/* gallery */
+.concept-gallery img{transition:filter .6s var(--ease),transform .8s var(--ease);border-radius:10px}
+.concept-gallery:hover img{filter:saturate(.85) brightness(.96)}
+.concept-gallery img:hover{filter:saturate(1.08) brightness(1.03)!important;transform:scale(1.015)}
+/* approach cards */
+.detail-card{transition:transform .5s var(--ease)}.detail-card:hover{transform:translateY(-4px)}
+/* about */
+.founder img{border-radius:14px;transition:transform 1s var(--ease)}
+.founder:hover img{transform:scale(1.01)}
+.detail-card .stat{font-size:58px!important}
+/* faq */
+.faq-item{transition:background .3s}.faq-item:hover summary{color:var(--olive)}
+.faq-item[open] p{animation:fadein .5s var(--ease)}
+@keyframes fadein{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+/* closing */
+.closing{background:linear-gradient(120deg,#46462a,#5d5b36,#46462a)!important;background-size:220% 220%!important;animation:drift 14s ease-in-out infinite alternate;padding:76px 0!important}
+.closing h2{font-size:clamp(30px,3.4vw,46px)!important}
+@keyframes drift{to{background-position:100% 50%}}
+/* editorial framing */
+.tech,.concept{width:min(var(--max),calc(100% - 64px));margin:72px auto;border-radius:24px;overflow:hidden;box-shadow:0 1px 0 rgba(65,59,45,.08),0 26px 60px rgba(36,30,18,.07)}
+.concept{margin-top:0}
+.concept-gallery{padding:10px!important}
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media(max-width:900px){.scroll-cue{display:none}.service{padding:30px 22px!important}}
+@media(max-width:900px){.tech,.concept{width:calc(100% - 28px);margin:40px auto;border-radius:18px}.concept{margin-top:0}}
+@media(max-width:600px){.hero:before{animation:none;inset:0}.concept-gallery img{border-radius:8px}.hero{height:auto!important;min-height:640px!important}.hero:before{background-position:62% center}.hero:after{background:linear-gradient(90deg,rgba(246,240,232,.96) 0%,rgba(246,240,232,.84) 58%,rgba(246,240,232,.25) 100%)}.services{padding-top:56px!important;padding-bottom:56px!important}.service-grid{gap:14px!important}.marquee-track{font-size:11px;gap:30px;padding:13px 0}.marquee-track span{gap:30px}.closing{padding:52px 0!important}}
+@media(prefers-reduced-motion:reduce){.hero:before,.marquee-track,.closing,.scroll-cue i:after{animation:none!important}.hero-copy>*{opacity:1;transform:none;animation:none}.rv{opacity:1;transform:none;transition:none}}
 </style>
 </head>
-<body>
+<body><div class="progress" aria-hidden="true"></div>
 <header><div class="wrap nav"><a class="brand" href="#home" aria-label="TAOVEL home">TAOVEL<small>HOSPITALITY ADVISORY</small></a><nav class="navlinks" aria-label="Main navigation"><a href="#services">Our Services</a><a href="#technology">Technology</a><a href="#concept">Concept Study</a><a href="#approach">Our Approach</a><a href="#about">About</a></nav><a class="btn nav-cta" href="#contact">Get in Touch&nbsp; →</a><button class="toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">☰</button></div><nav class="mobile" id="mobileNav" aria-label="Mobile navigation"><a href="#services">Our Services</a><a href="#technology">Technology</a><a href="#concept">Concept Study</a><a href="#approach">Our Approach</a><a href="#about">About</a><a class="btn mobile-cta" href="#contact">Get in Touch&nbsp; →</a></nav></header>
 <main id="home">
-<section class="hero"><div class="wrap"><div class="hero-copy"><h1 class="hero-kicker">Hotel consulting in Greece</h1><div class="hero-title">Concept. Operations.<br>Technology.</div><p>Strategic hospitality advisory for independent and boutique hotels in Greece.</p><a class="btn" href="#contact">Let's Talk&nbsp; →</a></div></div><div class="hero-caption">Shaping better hospitality together</div></section>
+<section class="hero"><div class="wrap"><div class="hero-copy"><h1 class="hero-kicker">Hotel consulting in Greece</h1><div class="hero-title">Concept. Operations.<br>Technology.</div><p>Strategic hospitality advisory for independent and boutique hotels in Greece.</p><a class="btn" href="#contact">Let's Talk&nbsp; →</a></div></div><div class="hero-caption">Shaping better hospitality together</div><div class="scroll-cue" aria-hidden="true">Scroll<i></i></div></section>
+<div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Hotel Concept</span><span>Guest Experience</span><span>Operations</span><span>Hospitality Technology</span><span>Cloudbeds</span><span>Boutique Hotels</span><span>Greece</span><span>Hotel Concept</span><span>Guest Experience</span><span>Operations</span><span>Hospitality Technology</span><span>Cloudbeds</span><span>Boutique Hotels</span><span>Greece</span></div></div>
 <section class="services wrap" id="services"><div class="section-heading"><h2>Our Services</h2><p>A holistic approach to hospitality growth</p></div><div class="service-grid">
 <article class="service"><svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 23 24 7l19 16M10 20v22h28V20M20 42V28h9v14"/></svg><h3>Hotel Concept &amp; Design</h3><p>Create distinctive concepts and memorable guest experiences — from positioning and atmosphere to the details guests remember.</p></article>
 <article class="service"><svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M19 4h10l1 5 4 2 4-2 5 8-4 4v5l4 4-5 8-5-2-4 2-1 5H19l-1-5-4-2-4 2-5-8 4-4v-5l-4-4 5-8 5 2 4-2z"/><circle cx="24" cy="24" r="7"/></svg><h3>Operations &amp; Process Improvement</h3><p>Optimize your operations for higher performance and efficiency — clear processes, roles and daily routines across front office, housekeeping and guest service.</p></article>
@@ -122,5 +196,17 @@ country.addEventListener('change',async()=>{const code=country.selectedOptions[0
 try{cache[code]=cache[code]||await fetch('assets/geo/'+code+'.json').then(r=>r.ok?r.json():[]);}catch(e){cache[code]=[];}
 if(country.selectedOptions[0].dataset.code!==code)return;const names=cache[code];
 city.innerHTML='<option value="" disabled selected>Select a city…</option>'+names.map(n=>'<option value="'+esc(n)+'">'+esc(n)+'</option>').join('');city.disabled=false;});
-$('demoForm').addEventListener('reset',()=>setTimeout(resetCity));})();</script>
+$('demoForm').addEventListener('reset',()=>setTimeout(resetCity));})();
+(()=>{const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('.service').forEach((el,i)=>{const n=document.createElement('span');n.className='num';n.textContent='0'+(i+1);el.appendChild(n);});
+const sel=['.section-heading','.service','.tech-copy','.tech-photo','.tech-item','.concept-gallery img','.concept-content','.details-grid>div:first-child','.detail-card','.founder','.about-body>div:first-child','.faq-grid>div:first-child','.faq-item','.closing-inner'];
+const els=[];sel.forEach(s=>document.querySelectorAll(s).forEach((el,i)=>{el.classList.add('rv');el.style.transitionDelay=(Math.min(i,5)*90)+'ms';els.push(el);}));
+const countUp=el=>{const m=el.textContent.match(/(\d+)(.*)/);if(!m)return;const t=+m[1],suf=m[2];let s0=null;const step=ts=>{s0=s0||ts;const p=Math.min((ts-s0)/1400,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e)+suf;if(p<1)requestAnimationFrame(step);};el.textContent='0'+suf;requestAnimationFrame(step);};
+if(reduce||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));}
+else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll&&e.target.querySelectorAll('.stat').forEach(countUp);io.unobserve(e.target);}}),{threshold:.14,rootMargin:'0px 0px -6% 0px'});els.forEach(e=>io.observe(e));}
+const bar=document.querySelector('.progress'),tp=document.querySelector('.tech-photo');let ticking=false;
+const onS=()=>{const h=document.documentElement,max=h.scrollHeight-innerHeight;bar.style.transform='scaleX('+(max>0?scrollY/max:0)+')';
+if(tp&&!reduce&&innerWidth>900){const r=tp.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight){const k=(r.top+r.height/2-innerHeight/2)/innerHeight;tp.style.backgroundPosition='30% '+(40+k*18)+'%';}}ticking=false;};
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onS);}},{passive:true});onS();})();
+</script>
 </body></html>
