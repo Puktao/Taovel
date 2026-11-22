@@ -2,12 +2,15 @@
 
 Static, single-page website for TAOVEL Hospitality Advisory (Greece).
 
+Live: https://taoveladvisory.com (custom domain via GitHub Pages; DNS at Cloudflare, records set to "DNS only").
+
 ## Structure
 
 ```
 index.html        # complete site (HTML + inline CSS/JS, no build step)
 privacy.html      # GDPR privacy policy (linked from footer and forms)
-sitemap.xml       # sitemap for search engines (update URLs when moving to own domain)
+sitemap.xml       # sitemap for search engines
+robots.txt        # points crawlers to the sitemap
 assets/           # images (.webp) and Cloudbeds logo (.svg)
 .github/workflows/pages.yml  # automatic GitHub Pages deployment
 ```
