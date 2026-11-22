@@ -146,7 +146,7 @@ body{text-rendering:optimizeLegibility}
 </dialog>
 <dialog class="contact-dialog" id="demoDialog" aria-labelledby="demoDialogTitle">
   <div class="contact-dialog-inner">
-    <div class="dialog-top"><div><div class="eyebrow">Cloudbeds · Introduction request</div><h2 id="demoDialogTitle">Request a Cloudbeds demo.</h2></div><button class="dialog-close" type="button" aria-label="Close demo request form" data-close-dialog>×</button></div>
+    <div class="dialog-top"><div><div class="eyebrow">Cloudbeds · Introduction request</div><h2 id="demoDialogTitle">Request a Cloudbeds Introduction.</h2></div><button class="dialog-close" type="button" aria-label="Close introduction request form" data-close-dialog>×</button></div>
     <p class="contact-intro">Tell us about your property. TAOVEL will review your details and arrange a Cloudbeds introduction tailored to your operation.</p>
     <form id="demoForm" data-kind="demo">
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
@@ -171,8 +171,8 @@ body{text-rendering:optimizeLegibility}
         <div class="contact-field"><label for="dPhone">Phone *</label><input id="dPhone" name="Phone" type="tel" autocomplete="tel" required></div>
         <div class="contact-field full"><label for="dPrompt">What Prompted the interest in Cloudbeds Services? *</label><textarea required id="dPrompt" name="What Prompted the interest in Cloudbeds Services?"></textarea></div>
       </div></fieldset>
-      <label class="consent"><input type="checkbox" name="Consent to share details with Cloudbeds" value="Yes" required><span>I agree that TAOVEL may share the details above with Cloudbeds to arrange my demo, as described in the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>. *</span></label>
-      <button class="btn contact-submit" type="submit">Request demo&nbsp; →</button>
+      <label class="consent"><input type="checkbox" name="Consent to share details with Cloudbeds" value="Yes" required><span>I agree that TAOVEL may share the details above with Cloudbeds to arrange my introduction, as described in the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>. *</span></label>
+      <button class="btn contact-submit" type="submit">Request Introduction&nbsp; →</button>
       <p class="contact-status" role="status" aria-live="polite"></p>
     </form>
     <p class="contact-note">Your request is delivered to TAOVEL by email via the FormSubmit service and is used only to arrange your Cloudbeds introduction. TAOVEL is a Cloudbeds Ambassador and may receive a commission when a hotel subscribes through its referral. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
@@ -189,8 +189,8 @@ const CONTACT_EMAIL='info@taoveladvisory.com';
 const FORMS={
 contact:{label:'Send enquiry',ok:'Thank you — your enquiry has been sent. We will reply to you by email.',
  build:f=>{const n=String(f.get('name')).trim(),h=String(f.get('hotel')||'').trim();return {'Name':n,'Email':f.get('email'),'Hotel / Company':h||'—','Topic':f.get('topic')||'—','Message':f.get('message'),_subject:'New enquiry from '+n+(h?' · '+h:''),_replyto:f.get('email')};}},
-demo:{label:'Request demo',ok:'Thank you — your Cloudbeds demo request has been sent. TAOVEL will contact you by email to arrange the introduction.',
- build:f=>{const p={};for(const [k,v] of f.entries()){if(k!=='_honey')p[k]=String(v).trim()||'—';}const o={};[...document.querySelectorAll('#demoForm [name]')].map(e=>e.name).forEach(k=>{if(k in p&&!(k in o))o[k]=p[k];});Object.keys(p).forEach(k=>{if(!(k in o))o[k]=p[k];});o._subject='New Cloudbeds demo request · '+f.get('Property Name')+' ('+f.get('City')+', '+f.get('Country')+')';o._replyto=f.get('Email');return o;}}};
+demo:{label:'Request Introduction',ok:'Thank you — your Cloudbeds introduction request has been sent. TAOVEL will contact you by email to arrange the introduction.',
+ build:f=>{const p={};for(const [k,v] of f.entries()){if(k!=='_honey')p[k]=String(v).trim()||'—';}const o={};[...document.querySelectorAll('#demoForm [name]')].map(e=>e.name).forEach(k=>{if(k in p&&!(k in o))o[k]=p[k];});Object.keys(p).forEach(k=>{if(!(k in o))o[k]=p[k];});o._subject='New Cloudbeds introduction request · '+f.get('Property Name')+' ('+f.get('City')+', '+f.get('Country')+')';o._replyto=f.get('Email');return o;}}};
 function mailtoLink(p){const body=Object.entries(p).filter(([k])=>!k.startsWith('_')).map(([k,v])=>k+': '+v).join('\n');return 'mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent(p._subject)+'&body='+encodeURIComponent(body);}
 document.querySelectorAll('form[data-kind]').forEach(form=>{const cfg=FORMS[form.dataset.kind],btn=form.querySelector('.contact-submit'),status=form.querySelector('.contact-status');
 const setStatus=(html,cls)=>{status.className='contact-status '+cls;status.innerHTML=html;};
