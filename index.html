@@ -185,7 +185,7 @@ document.querySelectorAll('[data-open-contact],a[href="#contact"]').forEach(el=>
 document.querySelectorAll('[data-open-demo]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();demoDialog.showModal();}));
 const closeDlg=d=>{if(!d.open||d.classList.contains('closing'))return;if(matchMedia('(prefers-reduced-motion: reduce)').matches){d.close();return;}d.classList.add('closing');const done=()=>{d.classList.remove('closing');d.close();};d.addEventListener('animationend',done,{once:true});setTimeout(()=>{if(d.classList.contains('closing'))done();},500);};
 document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('cancel',e=>{e.preventDefault();closeDlg(d);});d.addEventListener('click',e=>{if(e.target===d)closeDlg(d);});d.querySelectorAll('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>closeDlg(d)));});
-const CONTACT_EMAIL='info@taoveladvisory.com';
+const CONTACT_EMAIL='info@taoveladvisory.com',FORM_INBOX='taoveladvisory@gmail.com';
 const FORMS={
 contact:{label:'Send enquiry',ok:'Thank you — your enquiry has been sent. We will reply to you by email.',
  build:f=>{const n=String(f.get('name')).trim(),h=String(f.get('hotel')||'').trim();return {'Name':n,'Email':f.get('email'),'Hotel / Company':h||'—','Topic':f.get('topic')||'—','Message':f.get('message'),_subject:'New enquiry from '+n+(h?' · '+h:''),_replyto:f.get('email')};}},
@@ -196,7 +196,7 @@ document.querySelectorAll('form[data-kind]').forEach(form=>{const cfg=FORMS[form
 const setStatus=(html,cls)=>{status.className='contact-status '+cls;status.innerHTML=html;};
 form.addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(form);if(f.get('_honey'))return;
 btn.disabled=true;btn.textContent='Sending…';setStatus('','');const payload=Object.assign(cfg.build(f),{_template:'box',_captcha:'false'});
-try{const r=await fetch('https://formsubmit.co/ajax/'+CONTACT_EMAIL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});const d=await r.json().catch(()=>({}));
+try{const r=await fetch('https://formsubmit.co/ajax/'+FORM_INBOX,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});const d=await r.json().catch(()=>({}));
 if(!r.ok||String(d.success)!=='true')throw new Error(d.message||('Request failed (HTTP '+r.status+')'));form.reset();setStatus(cfg.ok,'ok');}
 catch(err){const why=String(err&&err.message||'').replace(/[<>&"]/g,'').slice(0,220);setStatus('Sorry, the message could not be sent. Please <a href="'+mailtoLink(payload)+'">send it by email</a> instead.'+(why?'<br><small class="err-detail">Details: '+why+'</small>':''),'err');}
 finally{btn.disabled=false;btn.innerHTML=cfg.label+'&nbsp; →';}});});

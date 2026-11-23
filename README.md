@@ -39,6 +39,11 @@ One-time setup: **Settings → Pages → Build and deployment → Source: GitHub
 
 ## Contact form
 
+- Visible contact address: **info@taoveladvisory.com** (Cloudflare Email Routing forwards it to the Gmail inbox).
+- Forms post to FormSubmit **directly to taoveladvisory@gmail.com** (`FORM_INBOX` in `index.html`), because
+  Cloudflare Email Routing may reject FormSubmit's automated emails (SPF/DMARC). Same inbox either way.
+
+
 The contact dialog posts enquiries to [FormSubmit](https://formsubmit.co) (`/ajax/<email>`),
 which forwards them by email. No account or API key is needed.
 
