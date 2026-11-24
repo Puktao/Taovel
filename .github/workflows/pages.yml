@@ -23,7 +23,7 @@ jobs:
       - name: Prepare site
         run: |
           mkdir _site
-          cp -r index.html privacy.html favicon.ico sitemap.xml robots.txt assets .nojekyll _site/
+          cp -r index.html privacy.html favicon.ico sitemap.xml robots.txt services-and-rates.pdf assets .nojekyll _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
